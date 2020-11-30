@@ -50,20 +50,20 @@ public class WebController {
         return "list_tags";
     }
 
-    @GetMapping("/example")
-    public String example(Model model) {
-        setCurrentDate(model);
-        return "example";
-    }
-
-    private void setCurrentDate(Model model) {
-        String currentDate = (new Date()).toString();
-        model.addAttribute("currentDate", currentDate);
+    @RequestMapping("/securedPage")
+    public String securedPage(Model model, Principal principal) {
+        return "securedPage";
     }
 
     @RequestMapping("/")
     public String index(Model model, Principal principal) {
         return "index";
+    }
+
+
+    private void setCurrentDate(Model model) {
+        String currentDate = (new Date()).toString();
+        model.addAttribute("currentDate", currentDate);
     }
 
 }
