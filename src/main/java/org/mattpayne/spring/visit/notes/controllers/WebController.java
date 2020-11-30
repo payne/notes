@@ -62,8 +62,14 @@ public class WebController {
             OAuth2AuthenticationToken token = (OAuth2AuthenticationToken) principal;
             Map<String, Object> attributes = token.getPrincipal().getAttributes();
             System.out.println(attributes);
+            String login= (String) attributes.get("login");
+            String name = (String) attributes.get("name");
+            String email = (String) attributes.get("email");
+            model.addAttribute("login",login);
+            model.addAttribute("name",name);
+            model.addAttribute("email",email);
         } catch (Exception e) {
-            e.printStackTrace();
+            e.printStackTrace(); //TODO: use a logger!
         }
         return "securedPage";
     }
