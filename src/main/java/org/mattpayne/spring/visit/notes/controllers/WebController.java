@@ -46,6 +46,12 @@ public class WebController {
         return "list_urls";
     }
 
+    @GetMapping("/example")
+    public String example(Model model) {
+        setCurrentDate(model);
+        return "example";
+    }
+
     @GetMapping("/listTags")
     public String listTags(Model model) {
         setCurrentDate(model);

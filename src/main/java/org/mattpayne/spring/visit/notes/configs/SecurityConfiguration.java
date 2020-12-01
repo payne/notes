@@ -8,14 +8,19 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http
-                .antMatcher("/**").authorizeRequests()
-                .antMatchers(new String[]{"/", "/index"}).permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .oauth2Login();
+        boolean isLocalHost = true;
+        if (isLocalHost) {
+            http.antMatcher("/**").authorizeRequests()
+                    .antMatchers("/**").permitAll();
+        } else {
+            http
+                    .antMatcher("/**").authorizeRequests()
+                    .antMatchers(new String[]{"/", "/index"}).permitAll()
+                    .anyRequest().authenticated()
+                    .and()
+                    .oauth2Login();
+        }
     }
 }
-
 
 
