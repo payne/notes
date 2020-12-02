@@ -1,12 +1,6 @@
-<h1>List Tags</h1>
-<ol>
-    <li><a href="add">Add URL with tags</a></li>
-    <li><a href="search">Search via tags</a></li>
-    <li><a href="listUrls">List URLs</a></li>
-    <li><a href="listTags">List Tags</a></li>
-    <li><a href="securedPage">Secure page</a></li>
-    <li><a href="logout">Logout</a></li>
-</ol>
-
-<span th:text="${currentDate}"></span>
-
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:insert="fragments :: header">HEADER STUFF</div>
+this is list_tags.html <span th:text="${currentDate}"></span>
+<div th:insert="fragments :: footer">FOOTER STUFF</div>
+</html>

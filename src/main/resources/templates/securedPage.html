@@ -1,19 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Secured Page</title>
-</head>
-<body>
-<h1>Secured Page</h1>
-<span th:text="${#authentication.name}"></span>
+<div th:insert="fragments :: header">HEADER STUFF</div>
 <ol>
     <li>Name: <span th:text="${name}"></span></li>
     <li>Login: <span th:text="${login}"></span></li>
     <li>Email: <span th:text="${email}"></span></li>
 </ol>
-
-<p><a href="/">index</a></p>
-</body>
+<span th:text="${currentDate}"></span>
+<div th:insert="fragments :: footer">FOOTER STUFF</div>
 </html>
+
 
