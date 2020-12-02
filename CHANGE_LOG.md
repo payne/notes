@@ -1,3 +1,10 @@
+# Change Log
+* Newest thing on top
+
+1. Used ManyToManyBidirectional from [Anghel Leonard's Spring Boot Persistence](https://github.com/payne/Hibernate-SpringBoot/commit/dd84c4e4a50ef221fcd641ed69df1620bff245f0)
+as an example for Url has many tags & Tag has many Urls.  Will soon remove the "smoke test" CommandLineRunner
+1. Got thymeleaf fragments working in a very simple way.
+1. Got simple OAuth2 using gitlab working via OAuth2-client
 
 # Started with:
 
