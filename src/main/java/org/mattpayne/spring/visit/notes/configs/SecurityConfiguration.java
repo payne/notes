@@ -9,7 +9,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         boolean isLocalHost = true;
-        if (isLocalHost) {
+        if (isLocalHost) { // TODO: Read this from application.yml -- use spring profiles!
             http.antMatcher("/**").authorizeRequests()
                     .antMatchers("/**").permitAll();
         } else {
