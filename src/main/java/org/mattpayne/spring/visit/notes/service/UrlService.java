@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,5 +34,19 @@ public class UrlService {
             tag.addUrl(url);
             tagRepository.save(tag);
         }
+    }
+
+    @Transactional
+    public List<Url> findAllUrls() {
+        List<Url> lazyUrls = urlRepository.findAll();
+        List<Url> loadedUrls=new ArrayList<>();
+        for (Url lu: lazyUrls) {
+            Url url = new Url(lu.getUrl());
+            for (Tag t: lu.getTags()) {
+                url.getTags().add(new Tag(t.getTag()));
+            }
+            loadedUrls.add(url);
+        }
+        return loadedUrls;
     }
 }
