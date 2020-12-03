@@ -20,4 +20,5 @@ spring:
         registration:
           github:
             client-id: e50b7a8acd83a7622d63
-            client-secret: be2a7704c0746a35048ec36cb4ecaa23e0a10c0f
+            client-secret: Visit https://github.com/settings/developers to make new id & secret
+
