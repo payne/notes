@@ -33,7 +33,8 @@ public class WebController {
     }
 
     @GetMapping("/add")
-    public String add(Model model) {
+    public String add(Model model, UrlDTO urlDTO) {
+        // model.addAttribute("urlDTO",urlDTO); // Not needed - spring magic :-)
         setCurrentDate(model);
         return "add";
     }
