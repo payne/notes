@@ -2,12 +2,15 @@ package org.mattpayne.spring.visit.notes.dto;
 
 import org.mattpayne.spring.visit.notes.entity.Url;
 
+import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 public class TagDTO {
     private Long id;
+
+    @NotNull
     private String tag;
     private Set<UrlDTO> urls = new HashSet<>();
 

@@ -1,16 +1,19 @@
 package org.mattpayne.spring.visit.notes.controllers;
 
+import org.mattpayne.spring.visit.notes.dto.UrlDTO;
 import org.mattpayne.spring.visit.notes.entity.Url;
 import org.mattpayne.spring.visit.notes.service.UrlService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.thymeleaf.context.LazyContextVariable;
 
+import javax.validation.Valid;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Date;
@@ -35,8 +38,9 @@ public class WebController {
         return "add";
     }
 
+    // Reference: https://github.com/spring-guides/gs-validating-form-input
     @PostMapping("/add")
-    public String addPost(Model model) {
+    public String addPost(Model model, @Valid UrlDTO urlDTO, BindingResult bindingResult) {
         setCurrentDate(model);
         return "add";
     }

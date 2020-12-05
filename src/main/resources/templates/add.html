@@ -2,5 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <div th:insert="fragments :: header">HEADER STUFF</div>
 This is add.html <span th:text="${currentDate}"></span>
+<p>
+    <form method="post" th:action="@{/add}" th:object="${urlDTO}">
+    <label for="url">URL:</label><input name="url" type="text" th:field="*{url}"/>
+    <label for="tagsStr">TAGS:</label><input name="tagsStr" type="text" th:field="*{tagsStr}"/>
+    <input type="submit">
+</form>
+</p>
 <div th:insert="fragments :: footer">FOOTER STUFF</div>
 </html>

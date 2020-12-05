@@ -2,13 +2,17 @@ package org.mattpayne.spring.visit.notes.dto;
 
 import org.mattpayne.spring.visit.notes.entity.Tag;
 
+import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 public class UrlDTO {
     private Long id;
+
+    @NotNull
     private String url;
+    private String tagsStr; // blank space delimited...
     private Set<TagDTO> tags = new HashSet<>();
 
     public UrlDTO() {}
@@ -52,5 +56,13 @@ public class UrlDTO {
 
     public void setTags(Set<TagDTO> tags) {
         this.tags = tags;
+    }
+
+    public String getTagsStr() {
+        return tagsStr;
+    }
+
+    public void setTagsStr(String tagsStr) {
+        this.tagsStr = tagsStr;
     }
 }
