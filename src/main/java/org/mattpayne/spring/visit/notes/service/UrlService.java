@@ -1,5 +1,7 @@
 package org.mattpayne.spring.visit.notes.service;
 
+import org.mattpayne.spring.visit.notes.dto.TagDTO;
+import org.mattpayne.spring.visit.notes.dto.UrlDTO;
 import org.mattpayne.spring.visit.notes.entity.Tag;
 import org.mattpayne.spring.visit.notes.entity.Url;
 import org.mattpayne.spring.visit.notes.repository.TagRepository;
@@ -37,13 +39,13 @@ public class UrlService {
     }
 
     @Transactional
-    public List<Url> findAllUrls() {
+    public List<UrlDTO> findAllUrls() {
         List<Url> lazyUrls = urlRepository.findAll();
-        List<Url> loadedUrls=new ArrayList<>();
+        List<UrlDTO> loadedUrls=new ArrayList<>();
         for (Url lu: lazyUrls) {
-            Url url = new Url(lu.getUrl());
+            UrlDTO url = new UrlDTO(lu.getId(),lu.getUrl());
             for (Tag t: lu.getTags()) {
-                url.getTags().add(new Tag(t.getTag()));
+                url.getTags().add(new TagDTO(t.getId(),t.getTag()));
             }
             loadedUrls.add(url);
         }
