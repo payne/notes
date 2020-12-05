@@ -43,7 +43,12 @@ public class WebController {
     @PostMapping("/add")
     public String addPost(Model model, @Valid UrlDTO urlDTO, BindingResult bindingResult) {
         setCurrentDate(model);
-        return "add";
+        Long addedId = urlService.addUrl(urlDTO);
+        UrlDTO addedUrl = urlService.findUrlById(addedId);
+        List<UrlDTO> urls = new ArrayList<>();
+        urls.add(addedUrl);
+        model.addAttribute("urls",urls);
+        return "add_confirmation";
     }
 
 
