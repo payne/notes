@@ -69,14 +69,15 @@ public class UrlService {
         }
     }
 
-    // commented out @Transactional to demo an error: @Transactional
+    // commented out @Transactional to demo an error:
+    @Transactional
     public UrlDTO findUrlById(Long id) {
         Optional<Url> optionalUrl = urlRepository.findById(id);
-        UrlDTO urlDto=null;
+        UrlDTO urlDto = null;
         if (optionalUrl.isPresent()) {
             Url lazyUrl = optionalUrl.get();
-            urlDto = new UrlDTO(lazyUrl.getId(),lazyUrl.getUrl());
-            copyTags(lazyUrl,urlDto);
+            urlDto = new UrlDTO(lazyUrl.getId(), lazyUrl.getUrl());
+            copyTags(lazyUrl, urlDto);
         }
         return urlDto;
     }
