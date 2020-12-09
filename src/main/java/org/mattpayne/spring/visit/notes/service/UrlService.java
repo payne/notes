@@ -87,27 +87,13 @@ public class UrlService {
             Optional<Tag> optional = tagRepository.findByTag(tagStr);
             if (optional.isPresent()) {
                 Tag tag = optional.get();
-                // tags.add(copyToTagDto(tag));
-                TagDTO tagDto=new TagDTO();
-                tagDto.setTag(tag.getTag());
-                tagDto.setId(tag.getId());
-                Set<UrlDTO> urlDTOs=new HashSet<>();
-                for (Url url: tag.getUrls()) {
-                    UrlDTO urlDTO=new UrlDTO();
-                    urlDTO.setUrl(url.getUrl());
-                    urlDTO.setId(url.getId());
-                    urlDTOs.add(urlDTO);
-                }
-                tagDto.setUrls(urlDTOs);
-                tags.add(tagDto);
+                tags.add(copyToTagDto(tag));
             }
         }
         return tags;
     }
 
-    /*
-    @Transactional
-    public TagDTO copyToTagDto(Tag tag) {
+    private TagDTO copyToTagDto(Tag tag) {
         TagDTO tagDto=new TagDTO();
         tagDto.setTag(tag.getTag());
         tagDto.setId(tag.getId());
@@ -116,9 +102,9 @@ public class UrlService {
             UrlDTO urlDTO=new UrlDTO();
             urlDTO.setUrl(url.getUrl());
             urlDTO.setId(url.getId());
+            urlDTOs.add(urlDTO);
         }
         tagDto.setUrls(urlDTOs);
         return tagDto;
     }
-     */
 }

@@ -16,7 +16,7 @@ Should requirements are nice to have.  e.g. you should exercise.
 1. Shall allow a user to view a list of tags in the database.
 1. Shall allow a user to click on a URL to view that URL’s title, description, list of tags in the URL, and other information. Call this a URL view.
 1. Shall allow a user to click on an tag to view that tag’s name, and list of URLs in which they have acted.  Call this an tag view.
-1. Shall create a bookmarkable URL for an tag view.
+1. X: Shall create a bookmarkable URL for a tag view.
 1. Shall create a bookmarkable URL for a URL view.
 1. Should allow a user to click on a genre and see a list of URLs in that genre.
 1. Should allow a user to view a list of genres.
