@@ -4,6 +4,8 @@ import org.mattpayne.spring.visit.notes.dto.UrlDTO;
 import org.mattpayne.spring.visit.notes.entity.Url;
 import org.mattpayne.spring.visit.notes.service.UrlService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.thymeleaf.context.LazyContextVariable;
 
 import javax.validation.Valid;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.LineNumberReader;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Date;
@@ -23,9 +29,24 @@ import java.util.Map;
 @Controller
 public class WebController {
 
-    @Autowired
-    UrlService urlService;
+    private UrlService urlService;
 
+    public WebController(UrlService urlService) {
+        this.urlService = urlService;
+        Resource resource = new ClassPathResource("authorized-usernames.txt");
+        try {
+            InputStream resourceInputStream = resource.getInputStream();
+            LineNumberReader in = new LineNumberReader(new InputStreamReader(resourceInputStream));
+            String line=null;
+            while (null != (line=in.readLine())) {
+                System.out.println(line);
+            }
+            in.close();
+            System.out.println("^^^^ authorized-usernames.txt  ^^^^");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     @GetMapping("/")
     public String index(Model model) {
         setCurrentDate(model);

@@ -7,7 +7,7 @@ Should requirements are nice to have.  e.g. you should exercise.
 1. Shall allow an unauthenticated user to read the home page and about page.
 1. Shall require github OAuth2 authentication to view all other pages.
 1. Shall only allow github usernames that are on an authorized list to perform create, update, and delete functions.
-1. Shall hold the list of authorized usernames in a simple text file src/main/resources/authorized-usernames.txt.   This file has one entry per line.  Entries are username, one or more blanks, then a comma separated list of actions categories permitted (create,update,delete).
+1. X: Shall hold the list of authorized usernames in a simple text file src/main/resources/authorized-usernames.txt.   This file has one entry per line.  Entries are username, one or more blanks, then a comma separated list of actions categories permitted (create,update,delete).
 1. Shall allow a new URL to be entered into the database.  The user shall be able to pick tags that are in the new URL from a list of tags that are already in the database.
 1. Should allow new tags to be entered into the database.
 1. Shall allow an tag to be deleted from the database.
