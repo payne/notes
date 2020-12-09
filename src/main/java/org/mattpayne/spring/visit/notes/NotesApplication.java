@@ -1,8 +1,5 @@
 package org.mattpayne.spring.visit.notes;
 
-import org.mattpayne.spring.visit.notes.entity.Tag;
-import org.mattpayne.spring.visit.notes.entity.Url;
-import org.mattpayne.spring.visit.notes.repository.TagRepository;
 import org.mattpayne.spring.visit.notes.service.UrlService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
