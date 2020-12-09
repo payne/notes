@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.TreeSet;
 
 @Entity
 public class Tag implements Serializable {
@@ -38,10 +39,16 @@ public class Tag implements Serializable {
 
     @Override
     public String toString() {
+       String urlStr;
+       Set<String> urlSet=new TreeSet<>();
+       for (Url url: this.getUrls()) {
+           urlSet.add(url.getUrl());
+       }
+       urlStr=String.join(",",urlSet);
         return "Tag{" +
                 "id=" + id +
-                ", tag='" + tag + '\'' +
-                ", urls=" + urls +
+                ", tag='" + this.tag + '\'' +
+                ", urls=" + urlStr +
                 '}';
     }
 

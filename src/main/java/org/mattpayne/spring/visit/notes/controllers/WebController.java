@@ -1,9 +1,9 @@
 package org.mattpayne.spring.visit.notes.controllers;
 
+import org.mattpayne.spring.visit.notes.dto.TagDTO;
 import org.mattpayne.spring.visit.notes.dto.UrlDTO;
-import org.mattpayne.spring.visit.notes.entity.Url;
+import org.mattpayne.spring.visit.notes.entity.Tag;
 import org.mattpayne.spring.visit.notes.service.UrlService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
@@ -13,7 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.thymeleaf.context.LazyContextVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 import java.io.IOException;
@@ -73,10 +73,13 @@ public class WebController {
     }
 
 
-    @GetMapping("/search")
-    public String search(Model model) {
+    @GetMapping("/searchTags")
+    public String search(@RequestParam(required=false) String tagSearch, Model model) {
+        // e.g. http://localhost:8080/searchTags?tagSearch=angular,youtube
+        List<TagDTO> tags = urlService.findUrlsByTags(tagSearch);
+        model.addAttribute("tags",tags);
         setCurrentDate(model);
-        return "search";
+        return "list_tags";
     }
 
     @GetMapping("/listUrls")

@@ -2,9 +2,7 @@ package org.mattpayne.spring.visit.notes.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 public class Url implements Serializable {
@@ -26,10 +24,16 @@ public class Url implements Serializable {
 
     @Override
     public String toString() {
+        String tagsStr;
+        Set<String> tagNames = new TreeSet<>(); // sort in RAM
+        for (Tag tag: this.getTags()) {
+            tagNames.add(tag.getTag());
+        }
+        tagsStr=String.join(",", tagNames);
         return "Url{" +
                 "id=" + id +
-                ", url='" + url + '\'' +
-                ", tags=" + tags +
+                ", url='" + this.url + '\'' +
+                ", tags=" + tagsStr +
                 '}';
     }
 

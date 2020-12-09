@@ -2,5 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <div th:insert="fragments :: header">HEADER STUFF</div>
 this is list_tags.html <span th:text="${currentDate}"></span>
+<div>
+    <ol>
+        <li th:each="tag: ${tags}"><span th:text="${tag.tag}"></span>
+            <ul>
+                <li th:each="url: ${tag.urls}"><span th:text="${url.url}"></span></li>
+            </ul>
+        </li>
+    </ol>
+</div>
 <div th:insert="fragments :: footer">FOOTER STUFF</div>
 </html>

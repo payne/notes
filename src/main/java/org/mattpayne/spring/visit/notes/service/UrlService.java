@@ -10,9 +10,7 @@ import org.springframework.stereotype.Service;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class UrlService {
@@ -81,4 +79,46 @@ public class UrlService {
         }
         return urlDto;
     }
+
+    @Transactional
+    public List<TagDTO> findUrlsByTags(String tagSearch) {
+        List<TagDTO> tags=new ArrayList<>();
+        for (String tagStr: tagSearch.split(",")) {
+            Optional<Tag> optional = tagRepository.findByTag(tagStr);
+            if (optional.isPresent()) {
+                Tag tag = optional.get();
+                // tags.add(copyToTagDto(tag));
+                TagDTO tagDto=new TagDTO();
+                tagDto.setTag(tag.getTag());
+                tagDto.setId(tag.getId());
+                Set<UrlDTO> urlDTOs=new HashSet<>();
+                for (Url url: tag.getUrls()) {
+                    UrlDTO urlDTO=new UrlDTO();
+                    urlDTO.setUrl(url.getUrl());
+                    urlDTO.setId(url.getId());
+                    urlDTOs.add(urlDTO);
+                }
+                tagDto.setUrls(urlDTOs);
+                tags.add(tagDto);
+            }
+        }
+        return tags;
+    }
+
+    /*
+    @Transactional
+    public TagDTO copyToTagDto(Tag tag) {
+        TagDTO tagDto=new TagDTO();
+        tagDto.setTag(tag.getTag());
+        tagDto.setId(tag.getId());
+        Set<UrlDTO> urlDTOs=new HashSet<>();
+        for (Url url: tag.getUrls()) {
+            UrlDTO urlDTO=new UrlDTO();
+            urlDTO.setUrl(url.getUrl());
+            urlDTO.setId(url.getId());
+        }
+        tagDto.setUrls(urlDTOs);
+        return tagDto;
+    }
+     */
 }
