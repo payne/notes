@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.io.InputStream;
@@ -52,16 +53,21 @@ public class WebController {
     @GetMapping("/add")
     public String add(Model model, UrlDTO urlDTO) {
         // model.addAttribute("urlDTO",urlDTO); // Not needed - spring magic :-)
-        Set<TagDTO> tags = urlService.findAllTags();
-        model.addAttribute("tags",tags);
+        Set<TagDTO> allTags = urlService.findAllTags();
+        model.addAttribute("allTags",allTags);
         setCurrentDate(model);
         return "add";
     }
 
     // Reference: https://github.com/spring-guides/gs-validating-form-input
     @PostMapping("/add")
-    public String addPost(Model model, @Valid UrlDTO urlDTO, BindingResult bindingResult) {
+    public String addPost(Model model,
+                          HttpServletRequest request,
+                          @Valid UrlDTO urlDTO,
+                          BindingResult bindingResult) {
         setCurrentDate(model);
+        Map<String,String[]> paramMap = request.getParameterMap();
+
         Long addedId = urlService.addUrl(urlDTO);
         UrlDTO addedUrl = urlService.findUrlById(addedId);
         List<UrlDTO> urls = new ArrayList<>();
