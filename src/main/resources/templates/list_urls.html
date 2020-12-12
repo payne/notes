@@ -6,7 +6,9 @@ this is list_urls.html <span th:text="${currentDate}"></span>
     <ol>
         <li th:each="url: ${urls}"><span th:text="${url.url}"></span>
            <ul>
-               <li th:each="tag: ${url.tags}"><span th:text="${tag.tag}"></span></li>
+               <li th:each="tag: ${url.tags}">
+                   <span th:text="${tag.tag}"></span>
+               </li>
            </ul>
         </li>
     </ol>
