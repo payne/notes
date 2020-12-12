@@ -107,4 +107,15 @@ public class UrlService {
         tagDto.setUrls(urlDTOs);
         return tagDto;
     }
+
+    @Transactional // since this is read only, might not need this annotation.
+    public Set<TagDTO> findAllTags() {
+        List<Tag> allTags = tagRepository.findAll();
+        Set<TagDTO> tags=new HashSet<>();
+        for (Tag entityTag: allTags) {
+            TagDTO tagDto = new TagDTO(entityTag.getId(), entityTag.getTag());
+            tags.add(tagDto);
+        }
+        return tags;
+    }
 }

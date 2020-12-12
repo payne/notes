@@ -6,6 +6,9 @@ This is add.html <span th:text="${currentDate}"></span>
     <form method="post" th:action="@{/add}" th:object="${urlDTO}">
     <label for="url">URL:</label><input name="url" type="text" th:field="*{url}"/>
     <label for="tagsStr">TAGS:</label><input name="tagsStr" type="text" th:field="*{tagsStr}"/>
+    <span th:each="tag: ${tags}">
+        <span th:text="${tag.tag}"></span>
+    </span>
     <input type="submit">
 </form>
 </p>
