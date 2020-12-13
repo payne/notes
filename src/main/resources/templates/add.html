@@ -11,7 +11,7 @@ This is add.html <span th:text="${currentDate}"></span>
                 <input type="checkbox" name="tags"
                        th:each="tag : ${allTags}"
                        th:text="${tag.tag}"
-                       th:value="${tag.id}"
+                       th:id="${tag.id}"
                        th:field="*{tags}"/>
             </label>
         </div>
