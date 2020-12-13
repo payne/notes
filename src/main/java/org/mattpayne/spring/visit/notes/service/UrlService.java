@@ -107,4 +107,14 @@ public class UrlService {
         tagDto.setUrls(urlDTOs);
         return tagDto;
     }
+
+    public Set<TagDTO> findAllTags() {
+        List<Tag> lazyTags = tagRepository.findAll();
+        Set<TagDTO> tags=new TreeSet<>();
+        for (Tag t: lazyTags) {
+            TagDTO tagDto = new TagDTO(t.getId(), t.getTag());
+            tags.add(tagDto);
+        }
+        return tags;
+    }
 }

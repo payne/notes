@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-public class TagDTO {
+public class TagDTO implements Comparable {
     private Long id;
 
     @NotNull
@@ -55,5 +55,11 @@ public class TagDTO {
     @Override
     public int hashCode() {
         return Objects.hash(tag);
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        TagDTO other = (TagDTO) o;
+        return this.tag.compareTo(other.getTag());
     }
 }

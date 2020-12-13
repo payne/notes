@@ -21,10 +21,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 public class WebController {
@@ -57,6 +54,8 @@ public class WebController {
     public String add(Model model, UrlDTO urlDTO) {
         // model.addAttribute("urlDTO",urlDTO); // Not needed - spring magic :-)
         setCurrentDate(model);
+        Set<TagDTO> allTags=urlService.findAllTags();
+        model.addAttribute("tagChoices",allTags);
         return "add";
     }
 
