@@ -1,5 +1,6 @@
 package org.mattpayne.spring.visit.notes.controllers;
 
+import lombok.extern.log4j.Log4j2;
 import org.mattpayne.spring.visit.notes.dto.TagDTO;
 import org.mattpayne.spring.visit.notes.dto.UrlDTO;
 import org.mattpayne.spring.visit.notes.entity.Tag;
@@ -26,6 +27,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+@Log4j2
 @Controller
 public class WebController {
 
